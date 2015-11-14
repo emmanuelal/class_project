@@ -1,0 +1,30 @@
+<!-- this is a example of using content_tag to generate elements for -->
+
+<div class =" books ">
+	<%= content_tag :span, "#{@book.name} (#{ @book.author })", class: "book-title " %>
+    <%= link_to 'Edit', edit_book_path(@book) %>
+</div>
+
+<div id ="notes" >
+ <%= render @book.notes %>
+</div>
+
+<div id="form">
+
+   <%= form_for([@book ,@book.notes.new ]) do |f| %>
+      <div class="field">
+            
+             <%= f.text_field :title, placeholder: "Title" %>
+      </div>
+      <div class="field">
+         
+          <%= f.text_area :note ,size:"25x5" ,placeholder: "Note" %>
+      </div>
+      <div class="actions">
+          <%= f.submit "Add New Note" %>
+      </div>
+     <% end %>
+</div>
+
+
+<%= link_to 'Back', books_path %>
